@@ -1,7 +1,8 @@
 /**
  * Created by lucaswebb on 11/3/14.
  */
-public class CardHand{
+public class CardHand
+{
         // instance variables - replace the example below with your own
         private CardCard hand[] = new CardCard[7];
 
@@ -27,7 +28,7 @@ public class CardHand{
                     hand[i] = addMe;
                 }
             }
-            //returns true if the card has been succesfully adde
+            //returns true if the card has been successfully added
             return added;
         }
 
