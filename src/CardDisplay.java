@@ -49,4 +49,3 @@ public class CardDisplay
         frame.setVisible(true);
     }
 }
-

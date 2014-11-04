@@ -10,7 +10,7 @@ public class CardDeck
 
     public CardDeck()
     {
-        //add all cards to deck qeaue
+        //add all cards to deck queue
         for(int suite = 0; suite < 4; suite ++){
             for(int number = 2; number <=13; number++){
                 boolean added = false;
@@ -28,7 +28,7 @@ public class CardDeck
     {
         Random rand = new Random();
 
-        //arbitarary number of times
+        //arbitrary number of times
         for(int i = 0; i < 100000; i ++){
             CardCard holder;
             int switch1 = rand.nextInt(deckQue.length);
