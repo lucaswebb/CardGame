@@ -8,6 +8,5 @@ public class CardRunner
         Player1Hand.addCard(otherCard);
         CardDisplay player1Display = new CardDisplay(Player1Hand, "Player 1");
         player1Display.makeDisplay();
-      
     }
 }

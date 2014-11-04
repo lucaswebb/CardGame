@@ -1,3 +1,6 @@
+/**
+ * Created by lucaswebb on 11/3/14.
+ */
 import java.awt.*;
 import javax.swing.*;
 
@@ -17,18 +20,18 @@ public class CardDisplay
         name = "";
         textDisplayed = "";
     }
-    
+
     public void editText(String newText){
         textDisplayed = newText;
     }
-    
+
     public void makeDisplay(){
         JFrame frame = new JFrame(name);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+
         JPanel primary = new JPanel();
         primary.setBackground(Color.green);
-        
+
         for(CardCard thisCard: CardsToDisplay.getCards()){
             if(thisCard != null){
                 JPanel cardPanel = new JPanel();
@@ -37,7 +40,7 @@ public class CardDisplay
                 //later make prettier and add string names for suites, and face cards
                 JLabel cardLabel = new JLabel(thisCard.getNumberString() + " of " + thisCard.getSuiteString());
                 cardPanel.add(cardLabel);
-                
+
                 primary.add(cardPanel);
             }
         }
@@ -46,3 +49,4 @@ public class CardDisplay
         frame.setVisible(true);
     }
 }
+

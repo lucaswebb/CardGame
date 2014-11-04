@@ -1,3 +1,6 @@
+/**
+ * Created by lucaswebb on 11/3/14.
+ */
 public class CardCard
 {
     // instance variables - replace the example below with your own
@@ -7,7 +10,7 @@ public class CardCard
         suite = newSuite;
         number = newNumber;
     }
-    
+
     public int getSuite(){
         return suite;
     }
@@ -21,22 +24,22 @@ public class CardCard
     public String getNumberString(){
         String str = "";
         switch(number){
-        case 2:
-            str = "Ace";
-            break;
-        case 11:
-            str =  "Jack";
-            break;
-        case 12:
-            str = "Queen";
-            break;
-        case 13:
-            str =  "King";
-            break;
-        default:
-            str = Integer.toString(number);
-            break;
-      }
-      return str;      
+            case 2:
+                str = "Ace";
+                break;
+            case 11:
+                str =  "Jack";
+                break;
+            case 12:
+                str = "Queen";
+                break;
+            case 13:
+                str =  "King";
+                break;
+            default:
+                str = Integer.toString(number);
+                break;
+        }
+        return str;
     }
 }
