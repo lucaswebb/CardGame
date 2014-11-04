@@ -19,7 +19,7 @@ public class CardCard
     }
     public String getSuiteString(){
         String suiteNames[] = {"clubs","spades","hearts","diamonds"};
-        return suiteNames[suite - 1];
+        return suiteNames[suite];
     }
     public String getNumberString(){
         String str = "";
