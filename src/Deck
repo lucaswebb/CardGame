@@ -37,19 +37,22 @@ public class CardDeck
     }
     
     public CardCard removeCard(){
-        shakeToBottom();
+        shakeToBottom(20);
         CardCard holder = deckQue[0];
         deckQue[0] = null;
         return holder;
     }
     
-    public  void shakeToBottom(){
+    public  void shakeToBottom(int timesLeft){
         for(int i = 0; i < deckQue.length ;i ++){        
             if(deckQue[i] == null){
                 for(int m = i; m < deckQue.length - 1; m ++){
                     deckQue[m] = deckQue[m + 1];
                 }
             }
+        }
+        if(timesLeft < 0){
+            shakeToBottom((timesLeft - 1));
         }
     }
     
