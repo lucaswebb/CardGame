@@ -29,23 +29,19 @@ public class CardDisplay
         JFrame frame = new JFrame(name);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        GraphicsPanel panel1 = new GraphicsPanel(CardsToDisplay);
+        Options panel2 = new Options();
+
         JPanel primary = new JPanel();
         primary.setBackground(Color.green);
+        primary.add(panel2);
+        primary.add(panel1);
 
-        for(CardCard thisCard: CardsToDisplay.getCards()){
-            if(thisCard != null){
-                JPanel cardPanel = new JPanel();
-                cardPanel.setPreferredSize(new Dimension(150, 100));
-                cardPanel.setBackground(Color.white);
-                //later make prettier and add string names for suites, and face cards
-                JLabel cardLabel = new JLabel(thisCard.getNumberString() + " of " + thisCard.getSuiteString());
-                cardPanel.add(cardLabel);
 
-                primary.add(cardPanel);
-            }
-        }
         frame.getContentPane().add(primary);
+
         frame.pack();
         frame.setVisible(true);
+
     }
 }
