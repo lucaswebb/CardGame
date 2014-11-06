@@ -60,6 +60,6 @@ public class Options extends JPanel
         buttonRight.setText(three);
         buttonCenter.setText(two);
     }
-
+//hello
 
 }
