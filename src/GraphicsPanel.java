@@ -76,4 +76,9 @@ public class GraphicsPanel extends JPanel
         }
 
     }
+
+    public void sethand(CardHand newHand){
+        hand = newHand;
+        repaint();
+    }
 }

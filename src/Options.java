@@ -11,6 +11,7 @@ public class Options extends JPanel
     private JButton buttonLeft;
     private JButton buttonRight;
     private JButton buttonCenter;
+    boolean needResponse;
 
     public Options(){
         countRight =0;
@@ -25,25 +26,30 @@ public class Options extends JPanel
         buttonCenter.addActionListener(new ButtonListener());
 
         add(buttonLeft);
-        add(buttonRight);
         add(buttonCenter);
+        add(buttonRight);
 
-        setPreferredSize(new Dimension(300,40));
+        setPreferredSize(new Dimension(1500,40));
         setBackground(Color.yellow);
+
+
+        needResponse = false;
     }
 
     private class ButtonListener implements ActionListener{
         public void actionPerformed(ActionEvent event){
+            needResponse = false;
             if(event.getSource() == buttonLeft){
                 //buttonLeft.setEnabled(false);
                 countLeft ++;
+                System.out.println("button 1 pressed");
             }
             if(event.getSource() == buttonRight){
                 countRight ++;
-                //
+                System.out.println("button 3 pressed");
             }
             if(event.getSource() == buttonCenter){
-                //
+                System.out.println("button 2 pressed");
                 countCenter++;
             }
         }
@@ -56,10 +62,41 @@ public class Options extends JPanel
         return array;
     }
     public void setOptions(String one, String two, String three){
-        buttonLeft.setText(one);
-        buttonRight.setText(three);
-        buttonCenter.setText(two);
+        if(!one.equals("")) {
+            buttonLeft.setEnabled(true);
+            buttonLeft.setText(one);
+        }
+        if(!two.equals("")) {
+            buttonCenter.setEnabled(true);
+            buttonCenter.setText(two);
+        }
+        if(!three.equals("")) {
+            buttonRight.setEnabled(true);
+            buttonRight.setText(three);
+        }
+    }
+    public void disableButton(int disableMe){
+        if(disableMe == 1){
+            buttonLeft.setText("");
+            buttonLeft.setEnabled(false);
+        }
+        else if(disableMe == 2){
+            buttonCenter.setText("");
+            buttonCenter.setEnabled(false);
+        }
+        else if(disableMe == 3) {
+            buttonRight.setText("");
+            buttonRight.setEnabled(false);
+        }
+
     }
 //hello
 
+
+    public boolean getNeedsResponse(){
+        return needResponse;
+    }
+    public void setNeedsResponse(boolean b){
+        needResponse = b;
+    }
 }

@@ -35,4 +35,13 @@ public class CardHand
         public CardCard[] getCards(){
             return hand;
         }
+
+        public int getSum(){
+            int sum= 0;
+            for(CardCard card:hand){
+                if(card != null)
+                    sum+= card.getNumber();
+            }
+            return sum;
+        }
 }
