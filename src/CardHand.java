@@ -4,10 +4,10 @@
 public class CardHand
 {
         // instance variables - replace the example below with your own
-        private CardCard hand[] = new CardCard[7];
+        int potentialCards = 10;
+        private CardCard hand[] = new CardCard[potentialCards];
 
-        public CardHand(){
-        }
+        public CardHand(){    }
 
         public void removeCard(int index){
             hand[index-1] = null;
@@ -32,6 +32,29 @@ public class CardHand
             return added;
         }
 
+        public CardCard[] removeCards(){
+            int count = 0;
+            for(CardCard foo: hand){
+                if(foo != null){
+                    count ++;
+                }
+            }
+            CardCard[] array = new CardCard[count];
+            for(int i = 0; i < count; i ++){
+                boolean needsToAdd = true;
+                for(int m = 0; m < hand.length; m ++){
+                    if(hand[m] != null && needsToAdd){
+                        array[i] = hand[m];
+                        needsToAdd = false;
+                    }
+                }
+            }
+            for(int i = 0; i < hand.length; i ++){
+                hand[i] = null;
+            }
+            return array;
+        }
+
         public CardCard[] getCards(){
             return hand;
         }
@@ -44,4 +67,5 @@ public class CardHand
             }
             return sum;
         }
+
 }

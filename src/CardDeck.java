@@ -45,6 +45,15 @@ public class CardDeck
         deckQue[0] = null;
         return holder;
     }
+    public void addCard(CardCard array[]){
+        shakeToBottom(1);
+        for(CardCard foo : array) {
+            deckQue[49] = foo;
+            shakeToBottom(1);
+        }
+        shakeToBottom(50);
+
+    }
 
     public  void shakeToBottom(int timesLeft){
         for(int i = 0; i < deckQue.length ;i ++){
@@ -54,7 +63,7 @@ public class CardDeck
                 }
             }
         }
-        if(timesLeft < 0){
+        if(timesLeft > 0){
             shakeToBottom((timesLeft - 1));
         }
     }

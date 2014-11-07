@@ -42,4 +42,7 @@ public class CardCard
         }
         return str;
     }
+    public String toString(){
+        return this.getNumberString() + " of " + this.getSuiteString();
+    }
 }
