@@ -12,10 +12,6 @@ public class CardRunner
 
         CardHand Player1Hand = new CardHand(false);
         CardHand Dealer = new CardHand(true);
-        Player1Hand.addCard( deck.removeCard());
-        Player1Hand.addCard(deck.removeCard());
-        Dealer.addCard(deck.removeCard());
-        Dealer.addCard(deck.removeCard());
         CardDisplay player1Display = new CardDisplay(Player1Hand,Dealer, "Player 1");
 
 
@@ -24,14 +20,31 @@ public class CardRunner
         player1Display.printBig("welcome to BlackJack");
 
         boolean keepPlaying = true;
+        boolean firstTimeThroughLoop = true;
         while(keepPlaying) {
             player1Display.printSmall("Would you like to Play?");
-            int dec = player1Display.getDecision("play", "exit", "");
+            int dec;
+            if(firstTimeThroughLoop)
+                dec = player1Display.getDecision("play", "exit", "");
+            else
+                dec = player1Display.getDecision("play again", "exit", "");
+            deck.addCard(Dealer.removeCards());
+            deck.addCard(Player1Hand.removeCards());
+            player1Display.refreshHand(Player1Hand,Dealer);
+            deck.shuffle();
+
             if (dec == 2) {
                 player1Display.printBig("Exiting game...");
                 player1Display.printSmall("");
+                keepPlaying = false;
+
                 System.out.println("exiting game");
             } else {
+                Player1Hand.addCard( deck.removeCard());
+                Player1Hand.addCard(deck.removeCard());
+                Dealer.addCard(deck.removeCard());
+                Dealer.addCard(deck.removeCard());
+                player1Display.refreshHand(Player1Hand,Dealer);
                 player1Display.printSmall("make a decision");
                 player1Display.printBig("");
 
@@ -68,27 +81,26 @@ public class CardRunner
 
 
                 //decide who wins
-                if (Player1Hand.getBust()) {
-                    player1Display.printBig("You lose... Bust");
-                } else if (Player1Hand.getBlackJack()) {
-                    player1Display.printBig("You win... BlackJack");
-                } else if (Dealer.getBust()) {
-                    player1Display.printBig("you win... Dealer busts");
-                } else if (Dealer.getBlackJack()) {
-                    player1Display.printBig("you lost... Dealer gets Blackjack");
-                } else if (Dealer.getSum() == Player1Hand.getSum()) {
-                    player1Display.printBig("Tie... both scores: " + Dealer.getSum());
-                } else if (Dealer.getSum() > Player1Hand.getSum()) {
-                    player1Display.printBig("Dealer wins with " + Dealer.getSum() + " points");
-                } else if (Dealer.getSum() < Player1Hand.getSum()) {
-                    player1Display.printBig("You win with " + Player1Hand.getSum() + " points");
+                if(keepPlaying) {
+                    if (Player1Hand.getBust()) {
+                        player1Display.printBig("You lose... Bust");
+                    } else if (Player1Hand.getBlackJack()) {
+                        player1Display.printBig("You win... BlackJack");
+                    } else if (Dealer.getBust()) {
+                        player1Display.printBig("you win... Dealer busts");
+                    } else if (Dealer.getBlackJack()) {
+                        player1Display.printBig("you lost... Dealer gets Blackjack");
+                    } else if (Dealer.getSum() == Player1Hand.getSum()) {
+                        player1Display.printBig("Tie... both scores: " + Dealer.getSum());
+                    } else if (Dealer.getSum() > Player1Hand.getSum()) {
+                        player1Display.printBig("Dealer wins with " + Dealer.getSum() + " points");
+                    } else if (Dealer.getSum() < Player1Hand.getSum()) {
+                        player1Display.printBig("You win with " + Player1Hand.getSum() + " points");
+                    }
                 }
             }
+            firstTimeThroughLoop = false;
         }
-
-        //prints big text in the center of the screen.
-        player1Display.printBig("Your score: " + Player1Hand.getSum() +
-                ", Dealer score: " + Dealer.getSum());
 
 
 
