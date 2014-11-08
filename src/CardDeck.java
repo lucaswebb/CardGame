@@ -51,6 +51,7 @@ public class CardDeck
             deckQue[49] = foo;
             shakeToBottom(1);
         }
+        shuffle();
         shakeToBottom(50);
 
     }

@@ -4,11 +4,14 @@
 public class CardCard
 {
     // instance variables - replace the example below with your own
+    boolean faceUp;
     private int suite;
     private int number;
+
     public CardCard(int newSuite, int newNumber){
         suite = newSuite;
         number = newNumber;
+        faceUp = true;
     }
 
     public int getSuite(){
@@ -44,5 +47,11 @@ public class CardCard
     }
     public String toString(){
         return this.getNumberString() + " of " + this.getSuiteString();
+    }
+    public void setFaceUp(boolean b){
+        faceUp =b;
+    }
+    public boolean getFaceUp(){
+        return faceUp;
     }
 }

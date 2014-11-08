@@ -4,19 +4,21 @@
 public class CardRunner
 {
     public static void main(String[] args){
-        
-    
-        
+
+
+
         CardDeck deck = new CardDeck();
         deck.shuffle();
-        
-        CardHand Player1Hand = new CardHand();
+
+        CardHand Player1Hand = new CardHand(false);
+        CardHand Dealer = new CardHand(true);
         Player1Hand.addCard( deck.removeCard());
         Player1Hand.addCard(deck.removeCard());
-        CardDisplay player1Display = new CardDisplay(Player1Hand, "Player 1");
+        Dealer.addCard(deck.removeCard());
+        Dealer.addCard(deck.removeCard());
+        CardDisplay player1Display = new CardDisplay(Player1Hand,Dealer, "Player 1");
 
 
-        player1Display.getDecision("Show","Off","");
 
 
       /*The following extremely simple black jack game  exemplifies the getDecision method
@@ -24,11 +26,12 @@ public class CardRunner
         to select some buttons.
         It returns a number 1 through 3 based on which button is clicked*/
 
-       boolean keepPlaying = true;
-       System.out.println(Player1Hand.getSum());
+        boolean keepPlaying = true;
+        System.out.println(Player1Hand.getSum());
         while(Player1Hand.getSum() < 22 && keepPlaying){
 
-           int i = player1Display.getDecision("Hit","Stand","");
+            player1Display.printSmall("make a decision...");
+            int i = player1Display.getDecision("Hit","Stand","");
             if(i == 1){
                 Player1Hand.addCard(deck.removeCard());
             }
@@ -36,11 +39,15 @@ public class CardRunner
                 keepPlaying = false;
             }
 
-           //leave at the end of loop
-           player1Display.refreshHand(Player1Hand);
+            //leave at the end of loop
+            player1Display.refreshHand(Player1Hand,Dealer);
         }
+        //turn the second card right side up for the dealer
+        Dealer.faceUp();
 
-        System.out.println("You're final score is " + Player1Hand.getSum());
+        //prints big text in the center of the screen.
+        player1Display.printBig("Your score: " + Player1Hand.getSum() +
+                ", Dealer score: " + Dealer.getSum());
 
 
 

@@ -7,22 +7,23 @@ import javax.swing.*;
 public class CardDisplay
 {
     // instance variables - replace the example below with your own
-    private CardHand CardsToDisplay;
+    private CardHand CardsToDisplay,Dealer;
     private String name;
     private String textDisplayed;
     Options panel2;
     GraphicsPanel panel1;
 
 
-    public CardDisplay(CardHand NewCardsToDisplay, String NewName){
+    public CardDisplay(CardHand NewCardsToDisplay, CardHand NewDealer,String NewName){
         CardsToDisplay = NewCardsToDisplay;
+        Dealer = NewDealer;
         name = NewName;
         textDisplayed = "";
 
         JFrame frame = new JFrame(name);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        panel1 = new GraphicsPanel(CardsToDisplay);
+        panel1 = new GraphicsPanel(CardsToDisplay, Dealer);
         panel2 = new Options();
 
         JPanel primary = new JPanel();
@@ -43,15 +44,15 @@ public class CardDisplay
 
 
 
-    public void refreshHand(CardHand hand){
-        panel1.sethand(hand);
+    public void refreshHand(CardHand hand,CardHand newDealer){
+        panel1.sethand(hand, newDealer);
     }
 
     public int getDecision(String option1, String option2, String option3){
         panel2.setOptions(option1, option2, option3);
         panel2.setNeedsResponse(true);
         while(panel2.getNeedsResponse()){
-           try{Thread.sleep(10);}
+            try{Thread.sleep(10);}
             catch(Exception e){}
         }
         int result = 0;
@@ -69,9 +70,9 @@ public class CardDisplay
     }
 
     public void printBig(String a){
-    //Add big text in the graphics panel
+        panel1.setBigText(a);
     }
     public void printSmall(String a){
-    //Add small instructional text next to the buttons
-}
+        panel2.setMessage(a);
+    }
 }

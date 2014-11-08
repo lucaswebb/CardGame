@@ -11,6 +11,8 @@ public class Options extends JPanel
     private JButton buttonLeft;
     private JButton buttonRight;
     private JButton buttonCenter;
+    private JLabel text;
+    private String message;
     boolean needResponse;
 
     public Options(){
@@ -24,7 +26,9 @@ public class Options extends JPanel
         buttonLeft.addActionListener(new ButtonListener());
         buttonRight.addActionListener(new ButtonListener());
         buttonCenter.addActionListener(new ButtonListener());
+        text = new JLabel("");
 
+        add(text);
         add(buttonLeft);
         add(buttonCenter);
         add(buttonRight);
@@ -98,5 +102,10 @@ public class Options extends JPanel
     }
     public void setNeedsResponse(boolean b){
         needResponse = b;
+    }
+
+    public void setMessage(String a)
+    {
+        text.setText(a);
     }
 }
