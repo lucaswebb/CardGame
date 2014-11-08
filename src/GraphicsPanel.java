@@ -52,7 +52,6 @@ public class GraphicsPanel extends JPanel
         int YDealer = 150;
         for (int i = 0; i < dealer.getCards().length; i++) {
             if (dealer.getCards()[i] != null) {
-                System.out.println("drawing deck card");
                 if (dealer.getCards()[i].getFaceUp()) {
                     drawCard(page, dealer.getCards()[i], Xdealer, YDealer);
                 } else {
@@ -136,6 +135,7 @@ public class GraphicsPanel extends JPanel
     }
     public void setBigText(String a){
         bigText = a;
+        repaint();
     }
 }
 

@@ -21,29 +21,70 @@ public class CardRunner
 
 
 
-      /*The following extremely simple black jack game  exemplifies the getDecision method
-      which can be used to prompt the user
-        to select some buttons.
-        It returns a number 1 through 3 based on which button is clicked*/
+        player1Display.printBig("welcome to BlackJack");
 
         boolean keepPlaying = true;
-        System.out.println(Player1Hand.getSum());
-        while(Player1Hand.getSum() < 22 && keepPlaying){
+        while(keepPlaying) {
+            player1Display.printSmall("Would you like to Play?");
+            int dec = player1Display.getDecision("play", "exit", "");
+            if (dec == 2) {
+                player1Display.printBig("Exiting game...");
+                player1Display.printSmall("");
+                System.out.println("exiting game");
+            } else {
+                player1Display.printSmall("make a decision");
+                player1Display.printBig("");
 
-            player1Display.printSmall("make a decision...");
-            int i = player1Display.getDecision("Hit","Stand","");
-            if(i == 1){
-                Player1Hand.addCard(deck.removeCard());
-            }
-            if(i == 2){
-                keepPlaying = false;
-            }
 
-            //leave at the end of loop
-            player1Display.refreshHand(Player1Hand,Dealer);
+                //lets the user keep adding cards
+                boolean playerTurn = true;
+                while (Player1Hand.getSum() < 21 && playerTurn) {
+
+                    player1Display.printSmall("make a decision...");
+                    int i = player1Display.getDecision("Hit", "Stand", "");
+                    if (i == 1) {
+                        Player1Hand.addCard(deck.removeCard());
+                    }
+                    if (i == 2) {
+                        playerTurn = false;
+                    }
+
+                    //leave at the end of loop
+                    player1Display.refreshHand(Player1Hand, Dealer);
+                }
+
+
+                //Dealer goes until done. Hits on soft 17s
+                Dealer.faceUp();
+
+                if (!Player1Hand.getBlackJack() && !Player1Hand.getBust()) {
+                    while (Dealer.getSum() < 17 || (Dealer.getIsSoft() && Dealer.getSum() == 17)) {
+                        player1Display.sleep(1500);
+                        Dealer.addCard(deck.removeCard());
+
+                        player1Display.refreshHand(Player1Hand, Dealer);
+                    }
+                }
+
+
+                //decide who wins
+                if (Player1Hand.getBust()) {
+                    player1Display.printBig("You lose... Bust");
+                } else if (Player1Hand.getBlackJack()) {
+                    player1Display.printBig("You win... BlackJack");
+                } else if (Dealer.getBust()) {
+                    player1Display.printBig("you win... Dealer busts");
+                } else if (Dealer.getBlackJack()) {
+                    player1Display.printBig("you lost... Dealer gets Blackjack");
+                } else if (Dealer.getSum() == Player1Hand.getSum()) {
+                    player1Display.printBig("Tie... both scores: " + Dealer.getSum());
+                } else if (Dealer.getSum() > Player1Hand.getSum()) {
+                    player1Display.printBig("Dealer wins with " + Dealer.getSum() + " points");
+                } else if (Dealer.getSum() < Player1Hand.getSum()) {
+                    player1Display.printBig("You win with " + Player1Hand.getSum() + " points");
+                }
+            }
         }
-        //turn the second card right side up for the dealer
-        Dealer.faceUp();
 
         //prints big text in the center of the screen.
         player1Display.printBig("Your score: " + Player1Hand.getSum() +

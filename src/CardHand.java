@@ -8,8 +8,12 @@ public class CardHand
     int potentialCards = 10;
     private CardCard hand[] = new CardCard[potentialCards];
 
+    boolean isSoft;//refers to whether the ace counts as a 11 or 17
+
+
     public CardHand(boolean b){
         isDealer = b;
+        isSoft = false;
     }
 
     public boolean addCard(CardCard addMe){
@@ -32,6 +36,7 @@ public class CardHand
 
     public CardCard[] removeCards(){
         int count = 0;
+        isSoft = true;
         for(CardCard foo: hand){
             if(foo != null){
                 count ++;
@@ -81,6 +86,7 @@ public class CardHand
                 }
         }
         while(sum > 21 && aceCount > 0){
+            isSoft = true;
             aceCount --;
             sum -= 10;
         }
@@ -89,6 +95,23 @@ public class CardHand
 
     public void faceUp(){
         hand[1].setFaceUp(true);
+    }
+    public boolean getIsSoft(){
+        return isSoft;
+    }
+    public boolean getBlackJack(){
+        if(this.getSum() == 21){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public boolean getBust(){
+        if(this.getSum() > 21){
+            return true;
+        }
+        else{return false;}
     }
 
 

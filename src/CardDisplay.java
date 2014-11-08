@@ -75,4 +75,8 @@ public class CardDisplay
     public void printSmall(String a){
         panel2.setMessage(a);
     }
+    public void sleep(int millis){
+        try{Thread.sleep(millis);}
+        catch(Exception e){}
+    }
 }

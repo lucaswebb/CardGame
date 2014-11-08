@@ -44,16 +44,12 @@ public class Options extends JPanel
         public void actionPerformed(ActionEvent event){
             needResponse = false;
             if(event.getSource() == buttonLeft){
-                //buttonLeft.setEnabled(false);
                 countLeft ++;
-                System.out.println("button 1 pressed");
             }
             if(event.getSource() == buttonRight){
                 countRight ++;
-                System.out.println("button 3 pressed");
             }
             if(event.getSource() == buttonCenter){
-                System.out.println("button 2 pressed");
                 countCenter++;
             }
         }
