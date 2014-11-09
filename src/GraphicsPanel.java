@@ -9,7 +9,8 @@ public class GraphicsPanel extends JPanel
     // instance variables - replace the example below with your own
     CardHand hand;
     CardHand dealer;
-    private String bigText;
+    private String bigText, mediumText;
+
 
 
     public GraphicsPanel(CardHand newHand, CardHand newDealer)
@@ -18,6 +19,7 @@ public class GraphicsPanel extends JPanel
         setPreferredSize(new Dimension(400,500));
 
         bigText = "";
+        mediumText = "";
         hand = newHand;
         dealer = newDealer;
 
@@ -28,11 +30,14 @@ public class GraphicsPanel extends JPanel
     public void paintComponent(Graphics page) {
         super.paintComponent(page);
 
-        Font f = new Font("Dialog", Font.PLAIN, 20);
-        page.setFont(f);
-
+        Font b = new Font("Dialog", Font.PLAIN, 20);
+        page.setFont(b);
         page.drawString(bigText, 20, 30);
 
+        Font m = new Font("Dialog", Font.PLAIN, 12);
+        page.setFont(m);
+        page.drawString(mediumText,20,450);
+        page.setFont(b);
 
         drawStack(page, 300, 100);
 
@@ -137,5 +142,10 @@ public class GraphicsPanel extends JPanel
         bigText = a;
         repaint();
     }
+    public void setMediumText(String a){
+        mediumText = a;
+        repaint();
+    }
+
 }
 

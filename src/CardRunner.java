@@ -17,18 +17,23 @@ public class CardRunner
 
 
         player1Display.printBig("welcome to BlackJack");
+        int money = 100;
+        int betAmount = 0;
 
         boolean keepPlaying = true;
         boolean firstTimeThroughLoop = true;
         while(keepPlaying) {
+            player1Display.printMedium("Your current money is " + money);
             player1Display.printSmall("Would you like to Play?");
 
+            player1Display.enableSlider();
             int dec;
             if(firstTimeThroughLoop)
                 dec = player1Display.getDecision("play", "exit", "");
             else
                 dec = player1Display.getDecision("play again", "exit", "");
 
+            betAmount = player1Display.getBet();
             //remove cards after input is entered
             deck.addCard(Dealer.removeCards());
             deck.addCard(Player1Hand.removeCards());
@@ -86,18 +91,24 @@ public class CardRunner
                 if(keepPlaying) {
                     if (Player1Hand.getBust()) {
                         player1Display.printBig("You lose... Bust");
-                    } else if (Player1Hand.getBlackJack()) {
+                        money -= betAmount;
+                    } else if (Player1Hand.getBlackJack() && !Dealer.getBlackJack()) {
                         player1Display.printBig("You win... BlackJack");
+                        money += betAmount;
                     } else if (Dealer.getBust()) {
                         player1Display.printBig("you win... Dealer busts");
+                        money += betAmount;
                     } else if (Dealer.getBlackJack()) {
                         player1Display.printBig("you lost... Dealer gets Blackjack");
+                        money -= betAmount;
                     } else if (Dealer.getSum() == Player1Hand.getSum()) {
                         player1Display.printBig("Tie... both scores: " + Dealer.getSum());
                     } else if (Dealer.getSum() > Player1Hand.getSum()) {
                         player1Display.printBig("Dealer wins with " + Dealer.getSum() + " points");
+                        money -= betAmount;
                     } else if (Dealer.getSum() < Player1Hand.getSum()) {
                         player1Display.printBig("You win with " + Player1Hand.getSum() + " points");
+                        money += betAmount;
                     }
                 }
             }

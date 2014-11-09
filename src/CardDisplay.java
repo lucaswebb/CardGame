@@ -72,11 +72,18 @@ public class CardDisplay
     public void printBig(String a){
         panel1.setBigText(a);
     }
+    public void printMedium(String a){panel1.setMediumText(a);}
     public void printSmall(String a){
         panel2.setMessage(a);
     }
     public void sleep(int millis){
         try{Thread.sleep(millis);}
         catch(Exception e){}
+    }
+    public int getBet(){
+        return panel2.getBet();
+    }
+    public void enableSlider(){
+        panel2.enableSlider();
     }
 }

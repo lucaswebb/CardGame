@@ -4,6 +4,10 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+
 public class Options extends JPanel
 {
     private int countLeft, countRight, countCenter;
@@ -11,9 +15,10 @@ public class Options extends JPanel
     private JButton buttonLeft;
     private JButton buttonRight;
     private JButton buttonCenter;
-    private JLabel text;
-    private String message;
+    private JLabel text, sliderInfo;
+    private JSlider slider;
     boolean needResponse;
+
 
     public Options(){
         countRight =0;
@@ -23,15 +28,23 @@ public class Options extends JPanel
         buttonLeft = new JButton("");
         buttonRight = new JButton("");
         buttonCenter = new JButton("");
+        slider = new JSlider(JSlider.HORIZONTAL,5,50,10);
+        text = new JLabel("");
+        sliderInfo = new JLabel("Your bet: " + Integer.toString(slider.getValue()));
+        slider.setEnabled(false);
+
+        slider.addChangeListener(new SliderListener());
         buttonLeft.addActionListener(new ButtonListener());
         buttonRight.addActionListener(new ButtonListener());
         buttonCenter.addActionListener(new ButtonListener());
-        text = new JLabel("");
+
 
         add(text);
         add(buttonLeft);
         add(buttonCenter);
         add(buttonRight);
+        add(slider);
+        add(sliderInfo);
 
         setPreferredSize(new Dimension(1500,40));
         setBackground(Color.yellow);
@@ -103,5 +116,22 @@ public class Options extends JPanel
     public void setMessage(String a)
     {
         text.setText(a);
+    }
+
+    public class SliderListener implements ChangeListener {
+        public void stateChanged(ChangeEvent e) {
+            JSlider source = (JSlider)e.getSource();
+            if (!source.getValueIsAdjusting()) {
+                sliderInfo.setText("your bet: " + Integer.toString(slider.getValue()));
+            }
+        }
+    }
+
+    public int getBet(){
+        slider.setEnabled(false);
+        return (int) slider.getValue();
+    }
+    public void enableSlider(){
+        slider.setEnabled(true);
     }
 }
