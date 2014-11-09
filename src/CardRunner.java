@@ -6,11 +6,10 @@ public class CardRunner
     public static void main(String[] args){
 
 
-
         CardDeck deck = new CardDeck();
         deck.shuffle();
 
-        CardHand Player1Hand = new CardHand(false);
+        CardHand Player1Hand = new CardHand(false);//input indicates whether the hand is a dealer
         CardHand Dealer = new CardHand(true);
         CardDisplay player1Display = new CardDisplay(Player1Hand,Dealer, "Player 1");
 
@@ -23,11 +22,14 @@ public class CardRunner
         boolean firstTimeThroughLoop = true;
         while(keepPlaying) {
             player1Display.printSmall("Would you like to Play?");
+
             int dec;
             if(firstTimeThroughLoop)
                 dec = player1Display.getDecision("play", "exit", "");
             else
                 dec = player1Display.getDecision("play again", "exit", "");
+
+            //remove cards after input is entered
             deck.addCard(Dealer.removeCards());
             deck.addCard(Player1Hand.removeCards());
             player1Display.refreshHand(Player1Hand,Dealer);

@@ -49,7 +49,7 @@ public class CardCard
         return this.getNumberString() + " of " + this.getSuiteString();
     }
     public void setFaceUp(boolean b){
-        faceUp =b;
+        faceUp = b;
     }
     public boolean getFaceUp(){
         return faceUp;

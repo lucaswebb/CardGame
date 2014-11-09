@@ -36,7 +36,9 @@ public class CardDeck
             holder = deckQue[switch2];
             deckQue[switch2] = deckQue[switch1];
             deckQue[switch1] = holder;
+
         }
+        shakeToBottom(50);
     }
 
     public CardCard removeCard(){
@@ -52,15 +54,19 @@ public class CardDeck
             shakeToBottom(1);
         }
         shuffle();
-        shakeToBottom(50);
 
     }
 
     public  void shakeToBottom(int timesLeft){
         for(int i = 0; i < deckQue.length ;i ++){
+            //starting from the 0 index find the first card which is null
             if(deckQue[i] == null){
-                for(int m = i; m < deckQue.length - 1; m ++){
-                    deckQue[m] = deckQue[m + 1];
+                for(int m = i; m < deckQue.length; m ++){
+                    if(m + 1 == 50){
+                        deckQue[m] = null;
+                    }
+                    else
+                        deckQue[m] = deckQue[m + 1];
                 }
             }
         }
@@ -69,7 +75,8 @@ public class CardDeck
         }
     }
 
-    public CardCard getCard(int index){
-        return deckQue[index];
+    public CardCard[] getCards(){
+        return deckQue;
     }
+
 }

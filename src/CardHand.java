@@ -36,7 +36,7 @@ public class CardHand
 
     public CardCard[] removeCards(){
         int count = 0;
-        isSoft = true;
+        isSoft = false;
         for(CardCard foo: hand){
             if(foo != null){
                 count ++;
@@ -48,6 +48,7 @@ public class CardHand
             for(int m = 0; m < hand.length; m ++){
                 if(hand[m] != null && needsToAdd){
                     array[i] = hand[m];
+                    hand[m] = null;
                     needsToAdd = false;
                 }
             }
