@@ -81,6 +81,7 @@ public class CardDisplay
         catch(Exception e){}
     }
     public int getBet(){
+        panel1.setBet(panel2.getBet());
         return panel2.getBet();
     }
     public void enableSlider(){

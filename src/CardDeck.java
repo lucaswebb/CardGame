@@ -54,7 +54,6 @@ public class CardDeck
             shakeToBottom(1);
         }
         shuffle();
-
     }
 
     public  void shakeToBottom(int timesLeft){

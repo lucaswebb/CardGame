@@ -94,13 +94,15 @@ public class CardRunner
                         money -= betAmount;
                     } else if (Player1Hand.getBlackJack() && !Dealer.getBlackJack()) {
                         player1Display.printBig("You win... BlackJack");
-                        money += betAmount;
+                        money += 2 * betAmount;
+                    } else if (Player1Hand.getBlackJack() && Dealer.getBlackJack()) {
+                        player1Display.printBig("Tie: Double BlackJack");
                     } else if (Dealer.getBust()) {
                         player1Display.printBig("you win... Dealer busts");
                         money += betAmount;
                     } else if (Dealer.getBlackJack()) {
                         player1Display.printBig("you lost... Dealer gets Blackjack");
-                        money -= betAmount;
+                        money -= 2 * betAmount;
                     } else if (Dealer.getSum() == Player1Hand.getSum()) {
                         player1Display.printBig("Tie... both scores: " + Dealer.getSum());
                     } else if (Dealer.getSum() > Player1Hand.getSum()) {

@@ -101,13 +101,25 @@ public class CardHand
         return isSoft;
     }
     public boolean getBlackJack(){
-        if(this.getSum() == 21){
+        boolean hasAce = false;
+        boolean has10 = false;
+        for(CardCard c: hand) {
+                if (c != null){
+                    if (c.getNumber() == 2)
+                        hasAce = true;
+                if (c.getNumber() >= 10)
+                    has10 = true;
+            }
+        }
+
+        if(this.getSum() == 21 && has10 && hasAce){
             return true;
         }
         else{
             return false;
         }
     }
+
     public boolean getBust(){
         if(this.getSum() > 21){
             return true;

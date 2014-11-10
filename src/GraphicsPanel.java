@@ -3,6 +3,7 @@
  */
 import javax.swing.JPanel;
 import java.awt.*;
+import java.awt.image.ColorConvertOp;
 import java.util.Random;
 public class GraphicsPanel extends JPanel
 {
@@ -10,18 +11,20 @@ public class GraphicsPanel extends JPanel
     CardHand hand;
     CardHand dealer;
     private String bigText, mediumText;
+    private int bet[] = {0,0,0};
 
 
 
     public GraphicsPanel(CardHand newHand, CardHand newDealer)
     {
         setBackground(Color.orange);
-        setPreferredSize(new Dimension(400,500));
+        setPreferredSize(new Dimension(400,600));
 
         bigText = "";
         mediumText = "";
         hand = newHand;
         dealer = newDealer;
+
 
     }
 
@@ -36,14 +39,19 @@ public class GraphicsPanel extends JPanel
 
         Font m = new Font("Dialog", Font.PLAIN, 12);
         page.setFont(m);
-        page.drawString(mediumText,20,450);
+        page.drawString(mediumText,20,550);
         page.setFont(b);
 
         drawStack(page, 300, 100);
 
+
+        drawBet(page,bet[0],Color.green,Color.white, 50,275, 25);
+        drawBet(page,bet[1],Color.red, Color.white, 110,275, 5);
+        drawBet(page,bet[2],Color.white,Color.black, 170,275, 1);
+
         //make all cards for user
         int X_Initial = 100;
-        int Y_Initial = 300;
+        int Y_Initial = 375;
         for (int i = 0; i < hand.getCards().length; i++) {
             if (hand.getCards()[i] != null) {
                 drawCard(page, hand.getCards()[i], X_Initial, Y_Initial);
@@ -145,6 +153,27 @@ public class GraphicsPanel extends JPanel
     public void setMediumText(String a){
         mediumText = a;
         repaint();
+    }
+    public void setBet(int b){
+        bet[0] = (b - b % 25)/25;
+        b -= bet[0] * 25;
+        bet[1] = (b - b % 5)/5;
+        b -= bet[1] * 5;
+        bet[2] = (b - b % 1)/1;
+        repaint();
+    }
+    public void drawBet(Graphics page, int number, Color c , Color a,int x, int y, int value){
+
+        for(int i = 0; i < number; i ++){
+            page.setColor(a);
+            page.fillOval(x-2,y-2,54,54);
+            page.setColor(c);
+            page.fillOval(x,y,50,50);
+            page.setColor(a);
+            page.drawString(Integer.toString(value), x + 13, y + 32);
+            y += 5;
+        }
+
     }
 
 }
