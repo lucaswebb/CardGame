@@ -5,16 +5,16 @@ import java.util.Random;
 public class CardDeck
 {
     // instance variables - replace the example below with your own
-    private CardCard deckQue[] = new CardCard[50];
+    private CardCard deckQue[] = new CardCard[52];
 
 
     public CardDeck()
     {
         //add all cards to deck queue
         for(int suite = 0; suite < 4; suite ++){
-            for(int number = 2; number <=13; number++){
+            for(int number = 1; number <=13; number++){
                 boolean added = false;
-                for(int i = 0; i < 50; i ++){
+                for(int i = 0; i < 52; i ++){
                     if(deckQue[i] == null && !added){
                         deckQue[i] = new CardCard(suite, number);
                         added = true;
