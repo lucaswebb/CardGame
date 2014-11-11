@@ -69,7 +69,7 @@ public class CardHand
         for(CardCard card:hand){
             if(card != null)
                 switch(card.getNumber()){
-                    case 2:
+                    case 1:
                         sum += 11;
                         aceCount ++;
                         break;
@@ -105,7 +105,7 @@ public class CardHand
         boolean has10 = false;
         for(CardCard c: hand) {
                 if (c != null){
-                    if (c.getNumber() == 2)
+                    if (c.getNumber() == 1)
                         hasAce = true;
                 if (c.getNumber() >= 10)
                     has10 = true;

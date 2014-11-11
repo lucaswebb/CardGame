@@ -1,6 +1,3 @@
-/**
- * Created by Stuart on 11/6/14.
- */
 import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.image.ColorConvertOp;
@@ -45,9 +42,16 @@ public class GraphicsPanel extends JPanel
         drawStack(page, 300, 100);
 
 
-        drawBet(page,bet[0],Color.green,Color.white, 50,275, 25);
-        drawBet(page,bet[1],Color.red, Color.white, 110,275, 5);
-        drawBet(page,bet[2],Color.white,Color.black, 170,275, 1);
+        page.setColor(Color.BLACK);
+        page.fillRect(120, 265, 200,100);
+        page.setColor(Color.white);
+        page.fillRect(124, 269, 192,92);
+        page.setColor(Color.black);
+        page.drawString("Bets", 130, 355);
+
+        drawBet(page,bet[0],Color.green,Color.black, 130,275, 25);
+        drawBet(page,bet[1],Color.red, Color.black, 190,275, 5);
+        drawBet(page,bet[2],Color.white,Color.black, 250,275, 1);
 
         //make all cards for user
         int X_Initial = 100;
@@ -62,7 +66,7 @@ public class GraphicsPanel extends JPanel
 
         //make all cards for dealer
         int Xdealer = 100;
-        int YDealer = 150;
+        int YDealer = 135;
         for (int i = 0; i < dealer.getCards().length; i++) {
             if (dealer.getCards()[i] != null) {
                 if (dealer.getCards()[i].getFaceUp()) {
@@ -177,4 +181,3 @@ public class GraphicsPanel extends JPanel
     }
 
 }
-
