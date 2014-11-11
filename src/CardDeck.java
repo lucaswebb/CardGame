@@ -2,30 +2,35 @@
  * Created by lucaswebb on 11/4/14.
  */
 import java.util.Random;
+import java.util.ArrayList;
+import java.util.Collections;
 public class CardDeck
 {
     // instance variables - replace the example below with your own
-    private CardCard deckQue[] = new CardCard[52];
-
+    //private CardCard deckQue[] = new CardCard[52];
+    private ArrayList<CardCard> deckQue= new ArrayList<CardCard>();
 
     public CardDeck()
     {
         //add all cards to deck queue
         for(int suite = 0; suite < 4; suite ++){
             for(int number = 1; number <=13; number++){
-                boolean added = false;
-                for(int i = 0; i < 52; i ++){
-                    if(deckQue[i] == null && !added){
-                        deckQue[i] = new CardCard(suite, number);
-                        added = true;
+                //boolean added = false;
+                //for(int i = 0; i < 52; i ++){
+                    //if(deckQue[i] == null && !added){
+                        CardCard c = new CardCard(suite, number);
+                        deckQue.add(c);
+                        //added = true;
                     }
                 }
             }
-        }
-    }
+
+
 //java has shuffle method for lists
-    public void shuffle()
-    {
+    public void shuffle(){
+        Collections.shuffle(deckQue);
+    }
+    /*{
         Random rand = new Random();
 
         //arbitrary number of times
@@ -40,23 +45,27 @@ public class CardDeck
         }
         shakeToBottom(50);
     }
+    */
 
     public CardCard removeCard(){
-        shakeToBottom(20);
-        CardCard holder = deckQue[0];
-        deckQue[0] = null;
+        //shakeToBottom(20);
+        CardCard holder = deckQue.get(0);
+        //deckQue[0] = null;
+        //return holder;
+        deckQue.remove(0);
         return holder;
     }
     public void addCard(CardCard array[]){
-        shakeToBottom(1);
+        //shakeToBottom(1);
         for(CardCard foo : array) {
-            deckQue[49] = foo;
-            shakeToBottom(1);
+            deckQue.add(foo);
+            //deckQue[49] = foo;
+            //shakeToBottom(1);
         }
         shuffle();
     }
 
-    public  void shakeToBottom(int timesLeft){
+    /*public  void shakeToBottom(int timesLeft){
         for(int i = 0; i < deckQue.length ;i ++){
             //starting from the 0 index find the first card which is null
             if(deckQue[i] == null){
@@ -73,9 +82,14 @@ public class CardDeck
             shakeToBottom((timesLeft - 1));
         }
     }
+*/
 
     public CardCard[] getCards(){
-        return deckQue;
+        CardCard deckQue2[] = new CardCard[52];
+        for(int index = 0; index < deckQue.size(); index++){
+            deckQue2[index] = deckQue.get(index);
+        }
+        return deckQue2;
     }
 
 }
