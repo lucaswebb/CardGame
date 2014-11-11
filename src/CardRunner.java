@@ -29,9 +29,9 @@ public class CardRunner
             player1Display.enableSlider();
             int dec;
             if(firstTimeThroughLoop)
-                dec = player1Display.getDecision("play", "exit", "");
+                dec = player1Display.getDecision("play", "exit", "", "");
             else
-                dec = player1Display.getDecision("play again", "exit", "");
+                dec = player1Display.getDecision("play again", "exit", "", "");
 
             betAmount = player1Display.getBet();
             //remove cards after input is entered
@@ -47,7 +47,7 @@ public class CardRunner
 
                 System.out.println("exiting game");
             } else {
-                Player1Hand.addCard( deck.removeCard());
+                Player1Hand.addCard(deck.removeCard());
                 Player1Hand.addCard(deck.removeCard());
                 Dealer.addCard(deck.removeCard());
                 Dealer.addCard(deck.removeCard());
@@ -61,14 +61,23 @@ public class CardRunner
                 while (Player1Hand.getSum() < 21 && playerTurn) {
 
                     player1Display.printSmall("make a decision...");
-                    int i = player1Display.getDecision("Hit", "Stand", "");
+                    int i = player1Display.getDecision("Hit", "Stand", "Double", "Split");
                     if (i == 1) {
                         Player1Hand.addCard(deck.removeCard());
                     }
                     if (i == 2) {
                         playerTurn = false;
                     }
+                    if(i == 3){
+                        betAmount = betAmount * 2;
+                        playerTurn = false;
+                        Player1Hand.addCard(deck.removeCard());
+                        player1Display.getBet();
+                        //Need to update grahics
+                    }
+                    if(i == 4){
 
+                    }
                     //leave at the end of loop
                     player1Display.refreshHand(Player1Hand, Dealer);
                 }
@@ -116,8 +125,5 @@ public class CardRunner
             }
             firstTimeThroughLoop = false;
         }
-
-
-
     }
 }

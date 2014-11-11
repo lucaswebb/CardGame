@@ -17,7 +17,7 @@ public class CardHand
     }
 
     public boolean addCard(CardCard addMe){
-
+//dont we need to remove the card from the deck that was added to the hand?
         boolean added = false;
         for(int i = 0; i < hand.length; i ++){
             if(hand[i] == null && !added){

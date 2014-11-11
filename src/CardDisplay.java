@@ -48,8 +48,8 @@ public class CardDisplay
         panel1.sethand(hand, newDealer);
     }
 
-    public int getDecision(String option1, String option2, String option3){
-        panel2.setOptions(option1, option2, option3);
+    public int getDecision(String option1, String option2, String option3, String option4){
+        panel2.setOptions(option1, option2, option3, option4);
         panel2.setNeedsResponse(true);
         while(panel2.getNeedsResponse()){
             try{Thread.sleep(10);}
@@ -57,7 +57,7 @@ public class CardDisplay
         }
         int result = 0;
         int array[] = panel2.getButtonResults();
-        for(int i = 0; i < 3;i ++){
+        for(int i = 0; i < 4;i ++){
             if(array[i] > 0){
                 result = i + 1;
             }
