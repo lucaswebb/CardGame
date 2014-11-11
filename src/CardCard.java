@@ -27,7 +27,7 @@ public class CardCard
     public String getNumberString(){
         String str = "";
         switch(number){
-            case 2:
+            case 2://no.
                 str = "Ace";
                 break;
             case 11:

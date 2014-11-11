@@ -23,7 +23,7 @@ public class CardDeck
             }
         }
     }
-
+//java has shuffle method for lists
     public void shuffle()
     {
         Random rand = new Random();
