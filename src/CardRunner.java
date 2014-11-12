@@ -87,29 +87,23 @@ public class CardRunner {
                     //Option to double
                     if (i == 3) {
                         betAmount = betAmount * 2;
-                        playerTurn = false;
                         Player1Hand.addCard(deck.removeCard());
                         player1Display.updateBet(betAmount);
+                        playerTurn = false;
                     }
                     if (i == 4) {
 
                     }
-
-                    if (i == 5) {
-
-
-                        //Option to surrender
-                        if (dec == 5) {
-
-                            betAmount = betAmount / 2;
-                            surrendered = true;
-                            playerTurn = false;
-                            player1Display.updateBet(betAmount);
+                    //Option to surrender
+                    if (dec == 5) {
+                        betAmount = betAmount / 2;
+                        surrendered = true;
+                        player1Display.updateBet(betAmount);
+                        playerTurn = false;
                         }
-                        //leave at the end of loop
-                        player1Display.refreshHand(Player1Hand, Dealer);
-                    }
 
+                    //leave at the end of loop
+                    player1Display.refreshHand(Player1Hand, Dealer);
 
                     //Dealer goes until done. Hits on soft 17s
                     Dealer.faceUp();
