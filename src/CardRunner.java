@@ -79,7 +79,8 @@ public class CardRunner
                     if(i == 4){
 
                     }
-                    if(dec == 5){
+                    if(i == 5){
+
                         betAmount = betAmount / 2;
                         surrendered = true;
                         playerTurn = false;
