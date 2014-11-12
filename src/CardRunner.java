@@ -29,9 +29,10 @@ public class CardRunner
             player1Display.enableSlider();
             int dec;
             if(firstTimeThroughLoop)
-                dec = player1Display.getDecision("play", "exit", "", "");
+                dec = player1Display.getDecision("play", "exit", "", "","");
             else
-                dec = player1Display.getDecision("play again", "exit", "", "");
+                dec = player1Display.getDecision("play again", "exit", "", "","");
+
 
             betAmount = player1Display.getBet();
             //remove cards after input is entered
@@ -61,7 +62,7 @@ public class CardRunner
                 while (Player1Hand.getSum() < 21 && playerTurn) {
 
                     player1Display.printSmall("make a decision...");
-                    int i = player1Display.getDecision("Hit", "Stand", "Double", "Split");
+                    int i = player1Display.getDecision("Hit", "Stand", "Double", "Split","");
                     if (i == 1) {
                         Player1Hand.addCard(deck.removeCard());
                     }
@@ -73,7 +74,6 @@ public class CardRunner
                         playerTurn = false;
                         Player1Hand.addCard(deck.removeCard());
                         player1Display.updateBet(betAmount);
-                        //Need to update grahics
                     }
                     if(i == 4){
 

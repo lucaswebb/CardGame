@@ -106,7 +106,7 @@ public class CardHand
         for(CardCard c: hand) {
                 if (c != null){
                     if (c.getNumber() == 1)
-                        hasAce = true;
+                        hasAce = !hasAce;
                 if (c.getNumber() >= 10)
                     has10 = true;
             }
