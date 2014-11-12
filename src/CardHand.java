@@ -15,16 +15,13 @@ public class CardHand
         isDealer = b;
         isSoft = false;
     }
-
+//Adds a card to the user's hand:
     public boolean addCard(CardCard addMe){
-//dont we need to remove the card from the deck that was added to the hand?
         boolean added = false;
         for(int i = 0; i < hand.length; i ++){
             if(hand[i] == null && !added){
-                added = true;
+                added = true; //sets card as added, then adds it to the hand
                 hand[i] = addMe;
-                //WARNING: This code could cause problems later because it
-                // will make any card added into the second position face down
                 if(i == 1 && isDealer){
                     hand[i].setFaceUp(false);
                 }
@@ -33,16 +30,17 @@ public class CardHand
         //returns true if the card has been successfully added
         return added;
     }
-
+//clears user's hand:
     public CardCard[] removeCards(){
         int count = 0;
         isSoft = false;
         for(CardCard foo: hand){
             if(foo != null){
-                count ++;
+                count ++; //counts number of cards in the user's hand
             }
         }
         CardCard[] array = new CardCard[count];
+        //makes each card in the hand null -> hand is cleared
         for(int i = 0; i < count; i ++){
             boolean needsToAdd = true;
             for(int m = 0; m < hand.length; m ++){
@@ -62,7 +60,7 @@ public class CardHand
     public CardCard[] getCards(){
         return hand;
     }
-
+//Finds sum of hand, and sees if it is <= 21. Also accounts for ace having a value of 1 or 11.
     public int getSum(){
         int sum= 0;
         int aceCount = 0;
@@ -93,7 +91,7 @@ public class CardHand
         }
         return sum;
     }
-
+//Determines end result of round:
     public void faceUp(){
         hand[1].setFaceUp(true);
     }
