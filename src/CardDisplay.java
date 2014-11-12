@@ -87,4 +87,8 @@ public class CardDisplay
     public void enableSlider(){
         panel2.enableSlider();
     }
+    public void updateBet(int betNew){
+        panel1.setBet(betNew);
+        panel2.setBet(betNew);
+    }
 }

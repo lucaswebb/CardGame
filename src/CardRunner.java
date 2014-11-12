@@ -72,7 +72,7 @@ public class CardRunner
                         betAmount = betAmount * 2;
                         playerTurn = false;
                         Player1Hand.addCard(deck.removeCard());
-                        player1Display.getBet();
+                        player1Display.updateBet(betAmount);
                         //Need to update grahics
                     }
                     if(i == 4){

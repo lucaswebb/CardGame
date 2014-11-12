@@ -19,6 +19,7 @@ public class Options extends JPanel
     private JLabel text, sliderInfo;
     private JSlider slider;
     boolean needResponse;
+    int bet;
 
 
     public Options(){
@@ -140,7 +141,7 @@ public class Options extends JPanel
         public void stateChanged(ChangeEvent e) {
             JSlider source = (JSlider)e.getSource();
             if (!source.getValueIsAdjusting()) {
-                sliderInfo.setText("your bet: " + Integer.toString(slider.getValue()));
+                sliderInfo.setText("Your bet: " + Integer.toString(slider.getValue()));
             }
         }
     }
@@ -148,6 +149,10 @@ public class Options extends JPanel
     public int getBet(){
         slider.setEnabled(false);
         return (int) slider.getValue();
+    }
+    public void setBet(int b){
+        bet = b;
+        sliderInfo.setText("Your bet: " + b);
     }
     public void enableSlider(){
         slider.setEnabled(true);
