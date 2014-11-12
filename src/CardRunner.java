@@ -36,8 +36,15 @@ public class CardRunner
             else
                 dec = player1Display.getDecision("play again", "exit", "", "","");
 
-            //Deals cards and sets bet then shuffles
-            betAmount = player1Display.getBet();
+
+            //Checks to make sure bet is not greater than money
+            if(player1Display.getBet() <= money){
+                betAmount = player1Display.getBet();
+            } else {
+                betAmount = money;
+                player1Display.updateBet(betAmount);
+            }
+            
             deck.addCard(Dealer.removeCards());
             deck.addCard(Player1Hand.removeCards());
             player1Display.refreshHand(Player1Hand,Dealer);
