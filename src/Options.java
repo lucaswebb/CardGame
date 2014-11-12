@@ -10,12 +10,9 @@ import javax.swing.event.ChangeListener;
 
 public class Options extends JPanel
 {
+    //Initializes buttons and slider and creates variables
     private int[] buttonCount = new int[5];
     private int score;
-    /*private JButton buttonLeft;
-    private JButton buttonRight;
-    private JButton buttonCenter;
-    private JButton buttonRightr;*/
     private JButton[] buttons = new JButton[5];
     private JLabel text, sliderInfo;
     private JSlider slider;
@@ -24,32 +21,15 @@ public class Options extends JPanel
 
 
     public Options(){
-        /*countRight =0;
-        countLeft = 0;
-        countCenter = 0;
-        countRightr = 0;*/
-
-        /*buttonLeft = new JButton("");
-        buttonRight = new JButton("");
-        buttonCenter = new JButton("");
-        buttonRightr = new JButton("");*/
+        //Create slider
         slider = new JSlider(JSlider.HORIZONTAL,5,50,10);
         text = new JLabel("");
         sliderInfo = new JLabel("Your bet: " + Integer.toString(slider.getValue()));
         slider.setEnabled(false);
 
         slider.addChangeListener(new SliderListener());
-        /*buttonLeft.addActionListener(new ButtonListener());
-        buttonRight.addActionListener(new ButtonListener());
-        buttonCenter.addActionListener(new ButtonListener());
-        buttonRightr.addActionListener(new ButtonListener());/*
 
-
-        add(text);
-       /* add(buttonLeft);
-        add(buttonCenter);
-        add(buttonRight);
-        add(buttonRightr);*/
+        //Creates buttons in array
         for(int i = 0; i < 5; i ++){
             buttons[i] = new JButton("");
             buttons[i].addActionListener(new ButtonListener());
@@ -74,21 +54,9 @@ public class Options extends JPanel
                     buttonCount[i] ++;
                 }
             }
-            /*
-            if(event.getSource() == buttonLeft){
-                countLeft ++;
-            }
-            if(event.getSource() == buttonRight){
-                countRight ++;
-            }
-            if(event.getSource() == buttonCenter){
-                countCenter++;
-            }
-            if(event.getSource() == buttonRightr){
-                countRightr++;
-            }*/
         }
     }
+    //Method to get results of button
     public int[] getButtonResults(){
         int array[] = new int[5];
 
@@ -98,6 +66,8 @@ public class Options extends JPanel
         }
         return array;
     }
+
+    //Method to set options of the buttons using an array
     public void setOptions(String opt[]){
         for(int i = 0; i < 5; i ++){
             try{
@@ -106,50 +76,17 @@ public class Options extends JPanel
                     buttons[i].setText(opt[i]);
                 }
 
-
             }catch(Exception e){
                 buttons[i].setEnabled(true);
                 buttons[i].setText(opt[i]);
             }
         }
-
-       /* if(!one.equals("")) {
-            buttonLeft.setEnabled(true);
-            buttonLeft.setText(one);
-        }
-        if(!two.equals("")) {
-            buttonCenter.setEnabled(true);
-            buttonCenter.setText(two);
-        }
-        if(!three.equals("")) {
-            buttonRight.setEnabled(true);
-            buttonRight.setText(three);
-        }
-        if(!four.equals("")){
-            buttonRightr.setEnabled(true);
-            buttonRightr.setText(four);
-        }*/
     }
+
+    //Disables button
     public void disableButton(int disableMe){
         buttons[disableMe].setText("");
         buttons[disableMe].setEnabled(false);
-        /*if(disableMe == 1){
-            buttonLeft.setText("");
-            buttonLeft.setEnabled(false);
-        }
-        else if(disableMe == 2){
-            buttonCenter.setText("");
-            buttonCenter.setEnabled(false);
-        }
-        else if(disableMe == 3) {
-            buttonRight.setText("");
-            buttonRight.setEnabled(false);
-        }
-        else if(disableMe == 4){
-            buttonRightr.setText("");
-            buttonRightr.setEnabled(false);
-        }*/
-
     }
 
 
@@ -160,13 +97,13 @@ public class Options extends JPanel
         needResponse = b;
     }
 
-
+    //Sets message
     public void setMessage(String a)
     {
         text.setText(a);
     }
 
-
+    //Updates value of the slider
     public class SliderListener implements ChangeListener {
         public void stateChanged(ChangeEvent e) {
             JSlider source = (JSlider)e.getSource();
@@ -175,14 +112,18 @@ public class Options extends JPanel
         }
     }
 
+    //Method to return the value of the slider, or the bet value
     public int getBet(){
         slider.setEnabled(false);
         return (int) slider.getValue();
     }
+
+    //Method to set the bet value, also updates slider value
     public void setBet(int b){
         bet = b;
         sliderInfo.setText("Your bet: " + b);
     }
+    //Enables slider
     public void enableSlider(){
         slider.setEnabled(true);
     }

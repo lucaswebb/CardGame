@@ -3,27 +3,33 @@
  */
 public class CardCard
 {
-    // instance variables - replace the example below with your own
+    //Initialize instance variables
     boolean faceUp;
     private int suite;
     private int number;
 
+    //Create card object
     public CardCard(int newSuite, int newNumber){
         suite = newSuite;
         number = newNumber;
         faceUp = true;
     }
 
+    //Getter methods
     public int getSuite(){
         return suite;
     }
     public int getNumber(){
         return number;
     }
+
+    //Method to get suite in a string
     public String getSuiteString(){
         String suiteNames[] = {"clubs","spades","hearts","diamonds"};
         return suiteNames[suite];
     }
+
+    //Method to get string of card value
     public String getNumberString(){
         String str = "";
         switch(number){
@@ -45,9 +51,12 @@ public class CardCard
         }
         return str;
     }
+    //To string method
     public String toString(){
         return this.getNumberString() + " of " + this.getSuiteString();
     }
+
+    //Methods to set face up and to getFaceup
     public void setFaceUp(boolean b){
         faceUp = b;
     }
