@@ -56,13 +56,14 @@ public class CardRunner
                 player1Display.printSmall("make a decision");
                 player1Display.printBig("");
 
+                boolean surrendered = false;
 
                 //lets the user keep adding cards
                 boolean playerTurn = true;
                 while (Player1Hand.getSum() < 21 && playerTurn) {
 
                     player1Display.printSmall("make a decision...");
-                    int i = player1Display.getDecision("Hit", "Stand", "Double", "Split","");
+                    int i = player1Display.getDecision("Hit", "Stand", "Double", "Split","surrender");
                     if (i == 1) {
                         Player1Hand.addCard(deck.removeCard());
                     }
@@ -77,6 +78,12 @@ public class CardRunner
                     }
                     if(i == 4){
 
+                    }
+                    if(dec == 5){
+                        betAmount = betAmount / 2;
+                        surrendered = true;
+                        playerTurn = false;
+                        player1Display.updateBet(betAmount);
                     }
                     //leave at the end of loop
                     player1Display.refreshHand(Player1Hand, Dealer);
@@ -104,6 +111,9 @@ public class CardRunner
                     } else if (Player1Hand.getBlackJack() && !Dealer.getBlackJack()) {
                         player1Display.printBig("You win... BlackJack");
                         money += 2 * betAmount;
+                    }else if (surrendered) {
+                        player1Display.printBig("You surrender");
+                        money -= betAmount;
                     } else if (Player1Hand.getBlackJack() && Dealer.getBlackJack()) {
                         player1Display.printBig("Tie: Double BlackJack");
                     } else if (Dealer.getBust()) {
