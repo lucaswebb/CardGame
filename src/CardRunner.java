@@ -102,7 +102,7 @@ public class CardRunner {
                             }
                         }
                         if (i == 4) {
-
+                            continue;
                         }
                         //Option to surrender
                         if (dec == 5) {
@@ -165,7 +165,11 @@ public class CardRunner {
                     if (money <= 0) {
                         keepPlaying = false;
                         player1Display.printBig("You Lose");
+                        betAmount = 0;
                         player1Display.updateBet(betAmount);
+                        player1Display.printMedium("Your Current Money is 0");
+                        CardHand blank = new CardHand(false);
+                        player1Display.refreshHand(blank, blank);
                     } else {
                         keepPlaying = true;
                     }
@@ -175,7 +179,6 @@ public class CardRunner {
             dec1 = player1Display.getDecision("New Game", "Exit", "", "", "");
             if (dec1 == 1) {
                 playAgain = true;
-                player1Display.refreshHand(Player1Hand, Dealer);
             } else {
                 playAgain = false;
             }
