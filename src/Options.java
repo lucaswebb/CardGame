@@ -74,11 +74,17 @@ public class Options extends JPanel
                 if(!opt[i].equals("")){
                     buttons[i].setEnabled(true);
                     buttons[i].setText(opt[i]);
+                    buttons[i].setVisible(true);
+                }else{
+                    buttons[i].setVisible(false);
+                    buttons[i].setEnabled(false);
+                    buttons[i].setText("");
                 }
 
             }catch(Exception e){
                 buttons[i].setEnabled(true);
                 buttons[i].setText(opt[i]);
+                buttons[i].setVisible(true);
             }
         }
     }
