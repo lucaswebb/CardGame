@@ -92,10 +92,14 @@ public class CardRunner {
                         }
                         //Option to double
                         if (i == 3) {
-                            betAmount = betAmount * 2;
-                            Player1Hand.addCard(deck.removeCard());
-                            player1Display.updateBet(betAmount);
-                            playerTurn = false;
+                            if(money >= betAmount * 2) {
+                                betAmount = betAmount * 2;
+                                Player1Hand.addCard(deck.removeCard());
+                                player1Display.updateBet(betAmount);
+                                playerTurn = false;
+                            } else {
+                                continue;
+                            }
                         }
                         if (i == 4) {
 
@@ -158,7 +162,7 @@ public class CardRunner {
                         }
                     }
                     //Ability to Lose
-                    if (money == 0) {
+                    if (money <= 0) {
                         keepPlaying = false;
                         player1Display.printBig("You Lose");
                         player1Display.updateBet(betAmount);
