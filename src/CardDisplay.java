@@ -67,7 +67,7 @@ public class CardDisplay
             }
         }
         panel2.setNeedsResponse(false);
-        for(int i = 1; i < 5; i ++) {
+        for(int i = 0; i < 5; i ++) {
             panel2.disableButton(i);
         }
         return result;
