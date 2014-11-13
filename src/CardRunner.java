@@ -99,7 +99,9 @@ public class CardRunner {
                         surrendered = true;
                         player1Display.updateBet(betAmount);
                         playerTurn = false;
-                        }
+                    } else {
+                        playerTurn = false;
+                    }
 
                     //leave at the end of loop
                     player1Display.refreshHand(Player1Hand, Dealer);
