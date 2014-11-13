@@ -27,6 +27,8 @@ public class CardRunner {
             boolean keepPlaying = true;
             boolean firstTimeThroughLoop = true;
             deck.shuffle();
+            int dec1;
+
 
             while (keepPlaying) {
                 player1Display.printMedium("Your Current Money is " + money);
@@ -160,18 +162,17 @@ public class CardRunner {
                             }
                         }
                     }
-                    int dec1;
                     //Ability to Lose
                     if (money <= 0) {
                         keepPlaying = false;
                         player1Display.printBig("You Lose");
                         betAmount = 0;
                         player1Display.updateBet(betAmount);
-<<<<<<< Updated upstream
+
                         player1Display.printMedium("Your Current Money is 0");
                         CardHand blank = new CardHand(false);
                         player1Display.refreshHand(blank, blank);
-=======
+
                         dec1 = player1Display.getDecision("New Game", "Exit", "", "", "");
                         if (dec1 == 1) {
                             playAgain = true;
@@ -179,22 +180,12 @@ public class CardRunner {
                         } else {
                             playAgain = false;
                         }
->>>>>>> Stashed changes
                     } else {
                         keepPlaying = true;
                     }
                     firstTimeThroughLoop = false;
                 }
             }
-<<<<<<< Updated upstream
-            dec1 = player1Display.getDecision("New Game", "Exit", "", "", "");
-            if (dec1 == 1) {
-                playAgain = true;
-            } else {
-                playAgain = false;
-            }
-=======
->>>>>>> Stashed changes
         }
     }
 }

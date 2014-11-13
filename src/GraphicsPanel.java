@@ -11,7 +11,6 @@ public class GraphicsPanel extends JPanel
     private int bet[] = {0,0,0};
 
 
-
    //constructor for the panel of graphics takes the parameter of 2 card hands
     public GraphicsPanel(CardHand newHand, CardHand newDealer)
     {
@@ -22,10 +21,7 @@ public class GraphicsPanel extends JPanel
         mediumText = "";
         hand = newHand;
         dealer = newDealer;
-
-
     }
-
 
 
     //this function paints the graphics on the page based on all of the variables in the class

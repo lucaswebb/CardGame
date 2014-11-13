@@ -15,7 +15,7 @@ public class CardHand
         isDealer = b;
         isSoft = false;
     }
-//Adds a card to the user's hand:
+    //Adds a card to the user's hand:
     public boolean addCard(CardCard addMe){
         boolean added = false;
         for(int i = 0; i < hand.length; i ++){
@@ -30,7 +30,7 @@ public class CardHand
         //returns true if the card has been successfully added
         return added;
     }
-//clears user's hand:
+    //clears user's hand:
     public CardCard[] removeCards(){
         int count = 0;
         isSoft = false;
@@ -61,7 +61,7 @@ public class CardHand
     public CardCard[] getCards(){
         return hand;
     }
-//Finds sum of hand, and sees if it is <= 21. Also accounts for ace having a value of 1 or 11.
+    //Finds sum of hand, and sees if it is <= 21. Also accounts for ace having a value of 1 or 11.
     public int getSum(){
         int sum= 0;
         int aceCount = 0;
@@ -92,7 +92,7 @@ public class CardHand
         }
         return sum;
     }
-//Determines end result of round:
+    //Determines end result of round:
     public void faceUp(){
         hand[1].setFaceUp(true);
     }
