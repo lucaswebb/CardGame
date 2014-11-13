@@ -45,9 +45,9 @@ public class GraphicsPanel extends JPanel
 
         //draws rectangle for the bets to sit on
         page.setColor(Color.BLACK);
-        page.fillRect(120, 265, 200,100);
+        page.fillRect(120, 265, 200, 100);
         page.setColor(Color.white);
-        page.fillRect(124, 269, 192,92);
+        page.fillRect(124, 269, 192, 92);
         page.setColor(Color.black);
         page.drawString("Bets", 130, 355);
 

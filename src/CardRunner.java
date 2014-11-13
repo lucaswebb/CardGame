@@ -10,12 +10,11 @@ public class CardRunner {
 
         //Create hands and initialize display
         CardHand Player1Hand = new CardHand(false);//input indicates whether the hand is a dealer
-        CardHand Dealer = new CardHand(true);
+        CardHand Dealer = new CardHand(true);//True because dealer
         CardDisplay player1Display = new CardDisplay(Player1Hand, Dealer, "Player 1");
 
-
         //Set money and bet amounts and print welcome message
-        player1Display.printBig("welcome to BlackJack");
+        player1Display.printBig("Welcome to BlackJack");
         int money = 100;
         int betAmount = 0;
 
@@ -23,17 +22,17 @@ public class CardRunner {
         //Keeps track of whether the player wants to play again
         boolean keepPlaying = true;
         boolean firstTimeThroughLoop = true;
-        while (keepPlaying) {
-            player1Display.printMedium("Your current money is " + money);
-            player1Display.printSmall("Would you like to Play?");
+        while (keepPlaying){
+            player1Display.printMedium("Your Current Money is " + money);
+            player1Display.printSmall("Would You Like to Play?");
 
             //Enable slider and reads players option to play or exit
             player1Display.enableSlider();
             int dec;
             if (firstTimeThroughLoop)
-                dec = player1Display.getDecision("play", "exit", "", "", "");
+                dec = player1Display.getDecision("Play", "Exit", "", "", "");
             else
-                dec = player1Display.getDecision("play again", "exit", "", "", "");
+                dec = player1Display.getDecision("Play Again", "Exit", "", "", "");
 
 
             //Checks to make sure bet is not greater than money
@@ -51,11 +50,11 @@ public class CardRunner {
 
             //Option to exit
             if (dec == 2) {
-                player1Display.printBig("Exiting game...");
+                player1Display.printBig("Exiting Game...");
                 player1Display.printSmall("");
                 keepPlaying = false;
 
-                System.out.println("exiting game");
+                System.out.println("Exiting Game");
                 //Option to keep playing
                 //Deals more cards and refreshes
             } else {
@@ -64,7 +63,7 @@ public class CardRunner {
                 Dealer.addCard(deck.removeCard());
                 Dealer.addCard(deck.removeCard());
                 player1Display.refreshHand(Player1Hand, Dealer);
-                player1Display.printSmall("make a decision");
+                player1Display.printSmall("Make a Decision");
                 player1Display.printBig("");
 
                 boolean surrendered = false;
@@ -74,8 +73,8 @@ public class CardRunner {
                 while (Player1Hand.getSum() < 21 && playerTurn) {
 
                     //Reads players decision
-                    player1Display.printSmall("make a decision...");
-                    int i = player1Display.getDecision("Hit", "Stand", "Double", "Split", "surrender");
+                    player1Display.printSmall("Make a Decision...");
+                    int i = player1Display.getDecision("Hit", "Stand", "Double", "Split", "Surrender");
                     //Option to hit
                     if (i == 1) {
                         Player1Hand.addCard(deck.removeCard());
@@ -128,18 +127,18 @@ public class CardRunner {
                             player1Display.printBig("You win... BlackJack");
                             money += 2 * betAmount;
                         } else if (surrendered) {
-                            player1Display.printBig("You surrender");
+                            player1Display.printBig("You Surrender");
                             money -= betAmount;
                         } else if (Player1Hand.getBlackJack() && Dealer.getBlackJack()) {
                             player1Display.printBig("Tie: Double BlackJack");
                         } else if (Dealer.getBust()) {
-                            player1Display.printBig("you win... Dealer busts");
+                            player1Display.printBig("You win... Dealer Busts");
                             money += betAmount;
                         } else if (Dealer.getBlackJack()) {
-                            player1Display.printBig("you lost... Dealer gets Blackjack");
+                            player1Display.printBig("You lost... Dealer got Blackjack");
                             money -= 2 * betAmount;
                         } else if (Dealer.getSum() == Player1Hand.getSum()) {
-                            player1Display.printBig("Tie... both scores: " + Dealer.getSum());
+                            player1Display.printBig("Tie... Both scores: " + Dealer.getSum());
                         } else if (Dealer.getSum() > Player1Hand.getSum()) {
                             player1Display.printBig("Dealer wins with " + Dealer.getSum() + " points");
                             money -= betAmount;

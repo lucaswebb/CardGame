@@ -39,7 +39,8 @@ public class CardHand
                 count ++; //counts number of cards in the user's hand
             }
         }
-        CardCard[] array = new CardCard[count];
+        CardCard[] array;
+        array = new CardCard[count];
         //makes each card in the hand null -> hand is cleared
         for(int i = 0; i < count; i ++){
             boolean needsToAdd = true;
@@ -102,27 +103,20 @@ public class CardHand
         boolean hasAce = false;
         boolean has10 = false;
         for(CardCard c: hand) {
-                if (c != null){
-                    if (c.getNumber() == 1)
-                        hasAce = !hasAce;
-                if (c.getNumber() >= 10)
+            if (c != null) {
+                if (c.getNumber() == 1)
+                    hasAce = !hasAce;
+                if (c.getNumber() >= 10) {
                     has10 = true;
+                }
             }
         }
 
-        if(this.getSum() == 21 && has10 && hasAce){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return this.getSum() == 21 && has10 && hasAce;
     }
 
     public boolean getBust(){
-        if(this.getSum() > 21){
-            return true;
-        }
-        else{return false;}
+        return this.getSum() > 21;
     }
 
 

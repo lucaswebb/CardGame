@@ -24,7 +24,7 @@ public class Options extends JPanel
         //Create slider
         slider = new JSlider(JSlider.HORIZONTAL,5,50,10);
         text = new JLabel("");
-        sliderInfo = new JLabel("Your bet: " + Integer.toString(slider.getValue()));
+        sliderInfo = new JLabel("Your Bet: " + Integer.toString(slider.getValue()));
         slider.setEnabled(false);
 
         slider.addChangeListener(new SliderListener());
@@ -107,7 +107,7 @@ public class Options extends JPanel
     public class SliderListener implements ChangeListener {
         public void stateChanged(ChangeEvent e) {
             JSlider source = (JSlider)e.getSource();
-                sliderInfo.setText("Your bet: " + Integer.toString(slider.getValue()));
+                sliderInfo.setText("Your Bet: " + Integer.toString(slider.getValue()));
 
         }
     }
@@ -121,7 +121,7 @@ public class Options extends JPanel
     //Method to set the bet value, also updates slider value
     public void setBet(int b){
         bet = b;
-        sliderInfo.setText("Your bet: " + b);
+        sliderInfo.setText("Your Bet: " + b);
     }
     //Enables slider
     public void enableSlider(){

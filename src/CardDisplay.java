@@ -11,7 +11,6 @@ public class CardDisplay
 {
     // instance variables
     private CardHand CardsToDisplay,Dealer;
-    private String name;
     Options panel2;
     GraphicsPanel panel1;
 
@@ -20,7 +19,7 @@ public class CardDisplay
     public CardDisplay(CardHand NewCardsToDisplay, CardHand NewDealer,String NewName){
         CardsToDisplay = NewCardsToDisplay;
         Dealer = NewDealer;
-        name = NewName;
+        String name = NewName;
 
         JFrame frame = new JFrame(name);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,7 +54,7 @@ public class CardDisplay
         panel2.setNeedsResponse(true);
         while(panel2.getNeedsResponse()){
             try{Thread.sleep(10);}
-            catch(Exception e){}
+            catch(Exception ignored){}
         }
         int result = 0;
         int array[] = panel2.getButtonResults();
@@ -84,8 +83,10 @@ public class CardDisplay
 
     //lets the main method sleep
     public void sleep(int millis){
-        try{Thread.sleep(millis);}
-        catch(Exception e){}
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException ignored) {
+        }
     }
 
     //updates the gui for the bet amount and returns it to the main method.
