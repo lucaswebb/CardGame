@@ -80,8 +80,7 @@ public class Options extends JPanel
                     buttons[i].setEnabled(false);
                     buttons[i].setText("");
                 }
-
-            }catch(Exception e){
+           }catch(Exception e){
                 buttons[i].setEnabled(true);
                 buttons[i].setText(opt[i]);
                 buttons[i].setVisible(true);

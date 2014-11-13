@@ -69,6 +69,7 @@ public class CardDisplay
         panel2.setNeedsResponse(false);
         for(int i = 0; i < 5; i ++) {
             panel2.disableButton(i);
+            System.out.println("disableing" +i);
         }
         return result;
     }

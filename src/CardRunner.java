@@ -1,3 +1,4 @@
+
 /**
  * Created by lucaswebb on 11/3/14.
  */
@@ -23,7 +24,6 @@ public class CardRunner {
             player1Display.printBig("Welcome to BlackJack");
             int money = 100;
             int betAmount = 0;
-            int dec1;
             boolean keepPlaying = true;
             boolean firstTimeThroughLoop = true;
             deck.shuffle();
@@ -39,7 +39,6 @@ public class CardRunner {
                     dec = player1Display.getDecision("Play", "Exit", "", "", "");
                 else
                     dec = player1Display.getDecision("Play Again", "Exit", "", "", "");
-
 
                 //Checks to make sure bet is not greater than money
                 if (player1Display.getBet() <= money) {
@@ -161,27 +160,41 @@ public class CardRunner {
                             }
                         }
                     }
+                    int dec1;
                     //Ability to Lose
                     if (money <= 0) {
                         keepPlaying = false;
                         player1Display.printBig("You Lose");
                         betAmount = 0;
                         player1Display.updateBet(betAmount);
+<<<<<<< Updated upstream
                         player1Display.printMedium("Your Current Money is 0");
                         CardHand blank = new CardHand(false);
                         player1Display.refreshHand(blank, blank);
+=======
+                        dec1 = player1Display.getDecision("New Game", "Exit", "", "", "");
+                        if (dec1 == 1) {
+                            playAgain = true;
+                            player1Display.refreshHand(Player1Hand, Dealer);
+                        } else {
+                            playAgain = false;
+                        }
+>>>>>>> Stashed changes
                     } else {
                         keepPlaying = true;
                     }
                     firstTimeThroughLoop = false;
                 }
             }
+<<<<<<< Updated upstream
             dec1 = player1Display.getDecision("New Game", "Exit", "", "", "");
             if (dec1 == 1) {
                 playAgain = true;
             } else {
                 playAgain = false;
             }
+=======
+>>>>>>> Stashed changes
         }
     }
 }
