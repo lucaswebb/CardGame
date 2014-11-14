@@ -25,6 +25,7 @@ public class Options extends JPanel
         slider = new JSlider(JSlider.HORIZONTAL,5,50,10);
         text = new JLabel("");
         sliderInfo = new JLabel("Your Bet: " + Integer.toString(slider.getValue()));
+        sliderInfo.setForeground(Color.WHITE);
         slider.setEnabled(false);
 
         slider.addChangeListener(new SliderListener());
@@ -40,7 +41,7 @@ public class Options extends JPanel
         add(sliderInfo);
 
         setPreferredSize(new Dimension(1500,40));
-        setBackground(Color.yellow);
+        setBackground(new Color(204, 31, 27));
 
 
         needResponse = false;
@@ -128,6 +129,12 @@ public class Options extends JPanel
         bet = b;
         sliderInfo.setText("Your Bet: " + b);
     }
+
+    //Set Slider Value
+    public void setSlider(int v){
+    slider.setValue(v);
+    sliderInfo.setText("Your Bet: " + Integer.toString(v));
+}
     //Enables slider
     public void enableSlider(){
         slider.setEnabled(true);

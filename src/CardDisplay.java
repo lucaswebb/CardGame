@@ -1,8 +1,13 @@
 /**
  * Created by lucaswebb on 11/3/14.
  */
+import javafx.scene.paint.RadialGradientBuilder;
+import org.w3c.dom.css.RGBColor;
+
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.WindowEvent;
+import java.awt.Color;
 
 /* In general this class's purpose is to create a jframe and take commands that pertain to the GUI
 and allocate it between the two panels, one for buttons, sliders, etc and one for animation
@@ -13,7 +18,7 @@ public class CardDisplay
     private CardHand CardsToDisplay,Dealer;
     Options panel2;
     GraphicsPanel panel1;
-
+    JFrame frame;
 
     //initializer takes the name of the Jframe, and two hands of cards
     public CardDisplay(CardHand NewCardsToDisplay, CardHand NewDealer,String NewName){
@@ -21,14 +26,14 @@ public class CardDisplay
         Dealer = NewDealer;
         String name = NewName;
 
-        JFrame frame = new JFrame(name);
+        frame = new JFrame(name);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         panel1 = new GraphicsPanel(CardsToDisplay, Dealer);
         panel2 = new Options();
 
         JPanel primary = new JPanel();
-        primary.setBackground(Color.green);
+        primary.setBackground(new Color(204, 31, 27));
         primary.add(panel2);
         primary.add(panel1);
 
@@ -105,5 +110,15 @@ public class CardDisplay
     public void updateBet(int betNew){
         panel1.setBet(betNew);
         panel2.setBet(betNew);
+    }
+
+    //Closes JFrame
+    public void closeJFRame(){
+        frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+    }
+
+    //Set Slider Value
+    public void setSlider1(int v){
+        panel2.setSlider(v);
     }
 }

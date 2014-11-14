@@ -22,7 +22,7 @@ public class CardRunner {
             //Set money and bet amounts and print welcome message
             player1Display.printBig("Welcome to BlackJack");
             int money = 100;
-            int betAmount = 0;
+            int betAmount = 10;
             boolean keepPlaying = true;
             boolean firstTimeThroughLoop = true;
             deck.shuffle();
@@ -40,7 +40,6 @@ public class CardRunner {
                     dec = player1Display.getDecision("Play", "Exit", "", "", "");
                 else
                     dec = player1Display.getDecision("Play Again", "Exit", "", "", "");
-
                 //Checks to make sure bet is not greater than money
                 if (player1Display.getBet() <= money) {
                     betAmount = player1Display.getBet();
@@ -60,6 +59,7 @@ public class CardRunner {
                     player1Display.printSmall("");
                     keepPlaying = false;
                     playAgain = false;
+                    player1Display.closeJFRame();
 
                     System.out.println("Exiting Game");
                     //Option to keep playing
@@ -78,10 +78,10 @@ public class CardRunner {
                     //lets the user keep adding cards
                     boolean playerTurn = true;
                     while (Player1Hand.getSum() < 21 && playerTurn) {
-
+                        player1Display.setSlider1(betAmount);
                         //Reads players decision
                         player1Display.printSmall("Make a Decision...");
-                        int i = player1Display.getDecision("Hit", "Stand", "Double", "Split", "Surrender");
+                        int i = player1Display.getDecision("Hit", "Stand", "Double", "", "Surrender");
                         //Option to hit
                         if (i == 1) {
                             Player1Hand.addCard(deck.removeCard());
@@ -101,11 +101,8 @@ public class CardRunner {
                                 continue;
                             }
                         }
-                        if (i == 4) {
-                            continue;
-                        }
                         //Option to surrender
-                        if (dec == 5) {
+                        if (i == 5) {
                             betAmount = betAmount / 2;
                             surrendered = true;
                             player1Display.updateBet(betAmount);
@@ -165,9 +162,9 @@ public class CardRunner {
                     if (money <= 0) {
                         keepPlaying = false;
                         player1Display.printBig("You Lose");
-                        betAmount = 0;
+                        betAmount = 10;
                         player1Display.updateBet(betAmount);
-
+                        player1Display.setSlider1(10);
                         player1Display.printMedium("Your Current Money is 0");
                         CardHand blank = new CardHand(false);
                         player1Display.refreshHand(blank, blank);
