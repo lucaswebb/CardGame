@@ -92,7 +92,7 @@ public class CardRunner {
                         }
                         //Option to double
                         if (i == 3) {
-                            if(money >= betAmount * 2) {
+                            if (money >= betAmount * 2) {
                                 betAmount = betAmount * 2;
                                 Player1Hand.addCard(deck.removeCard());
                                 player1Display.updateBet(betAmount);
@@ -107,13 +107,12 @@ public class CardRunner {
                             surrendered = true;
                             player1Display.updateBet(betAmount);
                             playerTurn = false;
-                        } else {
-                            playerTurn = false;
                         }
 
                         //leave at the end of loop
                         player1Display.refreshHand(Player1Hand, Dealer);
-
+                        System.out.println("Running loop");
+                    }
                         //Dealer goes until done. Hits on soft 17s
                         Dealer.faceUp();
 
@@ -184,4 +183,3 @@ public class CardRunner {
             }
         }
     }
-}
